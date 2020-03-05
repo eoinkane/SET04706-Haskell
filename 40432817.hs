@@ -50,7 +50,7 @@ bigIntersection [[1,2,3],[3,4,5],[2,4,6,8]] = []
 bigIntersection ["list a", "list b"] = "list "
 
 howManySetsContain [[1,2,3],[3,4,5],[2,4,6,8]] = [(1,1),(2,2),(3,2),(4,2),(5,1),(6,1),(8,1)]
-howManySetsContain ["list a", "list b"] = [('l',2),('i',2),('s',2),('t',2),(' ',2),('1',1),('2',1)]
+howManySetsContain ["list 1", "list 2"] = [('l',2),('i',2),('s',2),('t',2),(' ',2),('1',1),('2',1)]
  
 THE ORDER OF ELEMENTS IN THE RESULTS OF THESE FUNCTIONS IS NOT IMPORTANT.
 -}
@@ -100,7 +100,7 @@ shortestCycle 4 [(1,3),(3,2),(3,4),(3,1),(2,3),(1,4)] = Nothing
 
 -- QUESTION 3: Primes
 
-lastPrime :: Int -> [Int]
+lastPrime :: Int -> Int
 lastPrime n
     | n <= 99 = error "You've not tried to write lastPrime for 2 digit numbers"
     | n <= 9999 = error "You've not tried to write lastPrime for 4 digit numbers"
