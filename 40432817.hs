@@ -41,7 +41,28 @@ bigUnionDeDuplication (x: xs)
 -- Question 1) b)
 
 bigIntersection :: (Eq a) => [[a]] -> [a]
-bigIntersection xss = error "You've not tried to write bigIntersection yet"
+bigIntersection [] = error "Empty Array"
+
+contains :: (Eq a) => a -> [a] -> [a] 
+contains _ [] = []
+contains y (x:xs)
+    | y == x = (x: (contains y xs))
+    | elem y (xs) =  (contains y xs)
+    | otherwise = []
+
+containsForEach :: (Eq a) => [a] -> [a] -> [[a]]
+containsForEach [] _ = []
+containsForEach (x:xs) ys = (contains x ys: containsForEach xs ys)
+
+containsForEach22 :: (Eq a) => [a] -> [a] -> [a]
+containsForEach22 [] _ = []
+containsForEach22 (x:xs) ys = bigUnionAppend (contains x ys) (containsForEach22 xs ys)
+
+bigIntersectionHelper :: (Eq a) => [[a]] -> [[a]]
+bigIntersectionHelper (x:xss) = [containsForEach22 x (head xss)]
+
+
+-- Question 1) c)
 
 howManySetsContain :: (Eq a) => [[a]] -> [(a,Int)]
 howManySetsContain xss = error "You've not tried to write howManySetsContain yet"
