@@ -39,7 +39,7 @@ bigUnionDeDuplication (x: xs)
     | otherwise = (x:bigUnionDeDuplication(xs))
 
 -- Question 1) b)
-
+-- TODO Make Recursive
 bigIntersection :: (Eq a) => [[a]] -> [a]
 bigIntersection [] = error "Empty Array"
 
