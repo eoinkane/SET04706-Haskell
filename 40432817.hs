@@ -14,13 +14,11 @@ You may add as many extra or helper functions as you wish, but do not make any "
 
 bigUnion :: (Eq a) => [[a]] -> [a]
 bigUnion [] = error "Empty Array"
-bigUnion xss = bigUnionHelper xss
+bigUnion xss = bigUnionDeDuplication (bigUnionHelper xss)
 
 bigUnionAddAtEnd :: (Eq a) => a -> [a] -> [a]
 bigUnionAddAtEnd x [] = [x]
-bigUnionAddAtEnd x (y:ys)
-    | elem y ys = bigUnionAddAtEnd x (ys)
-    | otherwise = y : bigUnionAddAtEnd x (ys)
+bigUnionAddAtEnd x (y:ys) = y : bigUnionAddAtEnd x (ys)
 
 
 bigUnionAppend :: (Eq a) => [a] -> [a] -> [a]
@@ -31,6 +29,12 @@ bigUnionAppend (x:xs) ys = bigUnionAppend (xs) (bigUnionAddAtEnd x ys)
 bigUnionHelper :: (Eq a) => [[a]] -> [a]
 bigUnionHelper [] = []
 bigUnionHelper (x:xs) = bigUnionAppend (bigUnionHelper xs) x
+
+bigUnionDeDuplication :: (Eq a) => [a] -> [a]
+bigUnionDeDuplication [] = []
+bigUnionDeDuplication (x: xs)
+    | elem x xs = bigUnionDeDuplication xs
+    | otherwise = (x:bigUnionDeDuplication(xs))
 
 --
 
