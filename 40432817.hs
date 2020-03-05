@@ -12,6 +12,8 @@ You may add as many extra or helper functions as you wish, but do not make any "
 
 -- QUESTION 1: Sets
 
+-- Question 1) a)
+
 bigUnion :: (Eq a) => [[a]] -> [a]
 bigUnion [] = error "Empty Array"
 bigUnion xss = bigUnionDeDuplication (bigUnionHelper xss)
@@ -36,7 +38,7 @@ bigUnionDeDuplication (x: xs)
     | elem x xs = bigUnionDeDuplication xs
     | otherwise = (x:bigUnionDeDuplication(xs))
 
---
+-- Question 1) b)
 
 bigIntersection :: (Eq a) => [[a]] -> [a]
 bigIntersection xss = error "You've not tried to write bigIntersection yet"
