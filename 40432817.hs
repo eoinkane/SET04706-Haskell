@@ -39,29 +39,25 @@ bigUnionDeDuplication (x: xs)
     | otherwise = (x:bigUnionDeDuplication(xs))
 
 -- Question 1) b)
--- TODO Make Recursive
 bigIntersection :: (Eq a) => [[a]] -> [a]
 bigIntersection [] = error "Empty Array"
+bigIntersection xss = bigIntersectionHelperNew xss
 
-contains :: (Eq a) => a -> [a] -> [a] 
-contains _ [] = []
-contains y (x:xs)
-    | y == x = (x: (contains y xs))
-    | elem y (xs) =  (contains y xs)
-    | otherwise = []
+containsBoolean :: (Eq a) => a -> [a] -> Bool 
+containsBoolean _ [] = False
+containsBoolean y xs = elem y (xs) 
 
-containsForEach :: (Eq a) => [a] -> [a] -> [[a]]
-containsForEach [] _ = []
-containsForEach (x:xs) ys = (contains x ys: containsForEach xs ys)
+containsForEachNew :: (Eq a) => [a] -> [a] -> [a]
+containsForEachNew [] _ = []
+containsForEachNew (x:xs) ys  
+    | containsBoolean x ys == True = (x: containsForEachNew xs ys)
+    | otherwise = containsForEachNew xs ys
 
-containsForEach22 :: (Eq a) => [a] -> [a] -> [a]
-containsForEach22 [] _ = []
-containsForEach22 (x:xs) ys = bigUnionAppend (contains x ys) (containsForEach22 xs ys)
-
-bigIntersectionHelper1 :: (Eq a) => [[a]] -> [[a]]
-bigIntersectionHelper1 (x:xss)
-    | length xss == 0 = []
-    | otherwise = [ containsForEach22 (containsForEach22 x (head xss)) (head (tail (xss))) ]
+bigIntersectionHelperNew :: (Eq a) => [[a]] -> [a]
+bigIntersectionHelperNew [] = []
+bigIntersectionHelperNew (x:xss) 
+    | length xss == 1 = containsForEachNew x (head xss) 
+    | otherwise = containsForEachNew x ( bigIntersectionHelperNew xss )
 
 -- Question 1) c)
 
