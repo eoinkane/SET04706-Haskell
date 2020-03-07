@@ -58,9 +58,10 @@ containsForEach22 :: (Eq a) => [a] -> [a] -> [a]
 containsForEach22 [] _ = []
 containsForEach22 (x:xs) ys = bigUnionAppend (contains x ys) (containsForEach22 xs ys)
 
-bigIntersectionHelper :: (Eq a) => [[a]] -> [[a]]
-bigIntersectionHelper (x:xss) = [containsForEach22 x (head xss)]
-
+bigIntersectionHelper1 :: (Eq a) => [[a]] -> [[a]]
+bigIntersectionHelper1 (x:xss)
+    | length xss == 0 = []
+    | otherwise = [ containsForEach22 (containsForEach22 x (head xss)) (head (tail (xss))) ]
 
 -- Question 1) c)
 
