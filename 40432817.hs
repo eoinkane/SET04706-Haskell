@@ -64,6 +64,17 @@ bigIntersectionHelperNew (x:xss)
 howManySetsContain :: (Eq a) => [[a]] -> [(a,Int)]
 howManySetsContain xss = error "You've not tried to write howManySetsContain yet"
 
+nextListContainCount :: (Eq a) => a -> [a] -> Int
+nextListContainCount _ [] = 0
+nextListContainCount x (y:ys)
+    | x == y = 1 + (nextListContainCount x ys)
+    | otherwise = nextListContainCount x ys
+
+
+listContainCountForEach :: (Eq a) => [a] -> [Int]
+listContainCountForEach [] = []
+listContainCountForEach (x:xs) = ((nextListContainCount x (x:xs)): (listContainCountForEach xs))
+
 -- TEST SET FOR Q1
 {-
 Your functions should have the following behaviour:
