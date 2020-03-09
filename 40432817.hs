@@ -68,13 +68,36 @@ howManySetsContain xss = error "You've not tried to write howManySetsContain yet
 nextListContainCount :: (Eq a) => a -> [a] -> Int
 nextListContainCount _ [] = 0
 nextListContainCount x (y:ys)
-    | x == y = 1 + (nextListContainCount x ys)
+    | x == y = 1 
     | otherwise = nextListContainCount x ys
 
+howManyListsContainHelper :: (Eq a) => a -> [[a]] -> Int
+howManyListsContainHelper x [] = 0
+howManyListsContainHelper x (subList:listOfLists) = (nextListContainCount x subList) + (howManyListsContainHelper x listOfLists)
 
-listContainCountForEach :: (Eq a) => [a] -> [Int]
-listContainCountForEach [] = []
-listContainCountForEach (x:xs) = ((nextListContainCount x (x:xs)): (listContainCountForEach xs))
+howManySubListsContainHelper :: (Eq a) => [a] -> [[a]] -> [(a, Int)]
+howManySubListsContainHelper _ [] = []
+howManySubListsContainHelper [] _ = []
+howManySubListsContainHelper (x:xs) listOfLists = ((x,(howManyListsContainHelper x listOfLists)): (howManySubListsContainHelper xs listOfLists))
+
+iterateOverListItemExists :: (Eq a) => a -> [(a, Int)] -> Bool
+iterateOverListItemExists _ [] = False
+iterateOverListItemExists value (x:xs)
+    | fst(x) == value = True
+    | otherwise = iterateOverListItemExists value xs
+
+iterateOverSubListItemExists :: (Eq a) => a -> [[(a, Int)]] -> Bool
+iterateOverSubListItemExists _ [] = False
+iterateOverSubListItemExists x (subList:listOfLists)
+    | (iterateOverListItemExists x subList) == True = True
+    | otherwise = iterateOverSubListItemExists x listOfLists
+
+iterateOverSubListsHelper :: (Eq a) => [[a]] -> [[(a, Int)]]
+iterateOverSubListsHelper [] = [] 
+iterateOverSubListsHelper (x:xs) 
+    | length xs == 0 = []
+    | otherwise = ((howManySubListsContainHelper x (x:xs)): iterateOverSubListsHelper xs)
+
 
 -- TEST SET FOR Q1
 {-
