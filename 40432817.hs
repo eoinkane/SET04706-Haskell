@@ -97,9 +97,11 @@ iterateOverSubListsHelper [] = []
 iterateOverSubListsHelper (x:xs) = ((howManySubListsContainHelper x (x:xs)): iterateOverSubListsHelper xs)
 
 -- TODO - Build This Function
+-- Convert the result of iterateOverSubListsHelper from [[(a,Int)]] to [(a,Int)]
 iterateOverSubListsHelperAppend :: (Eq a) => [[(a, Int)]] -> [(a,Int)]
 
 -- TODO - Build This Function
+-- Dedupe the result of iterateOverSubListsHelperAppend to not have any occurences of a pair with the same fst()
 iterateOverSubListsHelperDeDupe :: (Eq a) => [(a, Int)] -> [(a,Int)]
 
 
