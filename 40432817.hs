@@ -96,10 +96,10 @@ iterateOverSubListsHelper :: (Eq a) => [[a]] -> [[(a, Int)]]
 iterateOverSubListsHelper [] = [] 
 iterateOverSubListsHelper (x:xs) = ((howManySubListsContainHelper x (x:xs)): iterateOverSubListsHelper xs)
 
-
+-- TODO - Build This
 iterateOverSubListsHelperAppend :: (Eq a) => [[(a, Int)]] -> [(a,Int)]
 
-
+-- TODO - Build This
 iterateOverSubListsHelperDeDupe :: (Eq a) => [(a, Int)] -> [(a,Int)]
 
 
