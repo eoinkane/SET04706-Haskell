@@ -99,10 +99,13 @@ iterateOverSubListsHelper (x:xs) = ((howManySubListsContainHelper x (x:xs)): ite
 -- TODO - Build This Function
 -- Convert the result of iterateOverSubListsHelper from [[(a,Int)]] to [(a,Int)]
 iterateOverSubListsHelperAppend :: (Eq a) => [[(a, Int)]] -> [(a,Int)]
+iterateOverSubListsHelperAppend [] = []
+iterateOverSubListsHelperAppend (x:xs) = bigUnionAppend (iterateOverSubListsHelperAppend xs) x
+
 
 -- TODO - Build This Function
 -- Dedupe the result of iterateOverSubListsHelperAppend to not have any occurences of a pair with the same fst()
-iterateOverSubListsHelperDeDupe :: (Eq a) => [(a, Int)] -> [(a,Int)]
+-- iterateOverSubListsHelperDeDupe :: (Eq a) => [(a, Int)] -> [(a,Int)]
 
 
 -- TEST SET FOR Q1
