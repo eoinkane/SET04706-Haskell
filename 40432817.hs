@@ -92,6 +92,7 @@ iterateOverSubListItemExists x (subList:listOfLists)
     | (iterateOverListItemExists x subList) == True = True
     | otherwise = iterateOverSubListItemExists x listOfLists
 
+-- TODO - Dedupe these reseults
 iterateOverSubListsHelper :: (Eq a) => [[a]] -> [[(a, Int)]]
 iterateOverSubListsHelper [] = [] 
 iterateOverSubListsHelper (x:xs) 
