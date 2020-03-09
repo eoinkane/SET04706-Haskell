@@ -60,6 +60,7 @@ bigIntersectionHelperNew (x:xss)
     | otherwise = containsForEachNew x ( bigIntersectionHelperNew xss )
 
 -- Question 1) c)
+-- TODO Finish this question
 
 howManySetsContain :: (Eq a) => [[a]] -> [(a,Int)]
 howManySetsContain xss = error "You've not tried to write howManySetsContain yet"
