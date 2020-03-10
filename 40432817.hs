@@ -109,6 +109,9 @@ iterateOverSubListsHelperDeDupe count (x:xs) fullList
     | (iterateOverListItemExists (fst x) (init (take count (iterateOverSubListsHelperAppend (iterateOverSubListsHelper fullList ))))) == True = (iterateOverSubListsHelperDeDupe (count + 1) xs fullList)
     | otherwise = (x: (iterateOverSubListsHelperDeDupe (count + 1) xs fullList))
 
+-- How to run this
+-- iterateOverSubListsHelperDeDupe 1 (iterateOverSubListsHelperAppend (iterateOverSubListsHelper ["list 1","list 2"])) ["list 1", "list 2"]
+
 -- TEST SET FOR Q1
 {-
 Your functions should have the following behaviour:
