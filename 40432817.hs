@@ -100,7 +100,7 @@ iterateOverSubListsHelperAppend :: (Eq a) => [[(a, Int)]] -> [(a,Int)]
 iterateOverSubListsHelperAppend [] = []
 iterateOverSubListsHelperAppend (x:xs) = bigUnionAppend (iterateOverSubListsHelperAppend xs) x
 
-
+-- TODO This function ignore last values if they are the same (BUG!!)
 iterateOverSubListsHelperDeDupe :: (Eq a) => Int -> [(a, Int)] -> [[a]] -> [(a, Int)]
 iterateOverSubListsHelperDeDupe _ [] _ = []
 iterateOverSubListsHelperDeDupe _ _ [] = error "empty"
