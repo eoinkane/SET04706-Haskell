@@ -131,7 +131,22 @@ THE ORDER OF ELEMENTS IN THE RESULTS OF THESE FUNCTIONS IS NOT IMPORTANT.
 -- QUESTION 2: Functions and relations
 -- Question 2) a)
 oneHop :: (Eq a) => a -> [(a,a)] -> [a]
-oneHop y xs = error "You've not tried to write oneHop yet"
+oneHop _ [] = error "empty list"
+oneHop y xs = oneHopHelper y xs
+
+findOccurences :: (Eq a) => a -> [(a,a)] -> [(a,a)]
+findOccurences _ [] = []
+findOccurences target (x:xs)
+    | (target == fst(x)) == True = (x: (findOccurences target xs))
+    | otherwise = (findOccurences target xs)
+
+getRelatedFromOccurences :: (Eq a) => [(a,a)] -> [a]
+getRelatedFromOccurences [] = []
+getRelatedFromOccurences (x:xs) = ((snd x): (getRelatedFromOccurences xs))
+
+oneHopHelper :: (Eq a) => a -> [(a,a)] -> [a]
+oneHopHelper _ [] = error "empty list"
+oneHopHelper target (xs) = getRelatedFromOccurences (findOccurences target xs)
 
 -- Question 2) b)
 nextSteps :: (Eq a) => [a] -> [(a,a)] -> [[a]]
