@@ -149,6 +149,7 @@ oneHopHelper _ [] = error "empty list"
 oneHopHelper target (xs) = getRelatedFromOccurences (findOccurences target xs)
 
 -- Question 2) b)
+-- TODO Do this Questions
 nextSteps :: (Eq a) => [a] -> [(a,a)] -> [[a]]
 nextSteps ps xs = error "You've not tried to write nextSteps yet"
 
