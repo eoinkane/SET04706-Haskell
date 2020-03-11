@@ -60,10 +60,9 @@ bigIntersectionHelperNew (x:xss)
     | otherwise = containsForEachNew x ( bigIntersectionHelperNew xss )
 
 -- Question 1) c)
--- TODO Finish this question
-
 howManySetsContain :: (Eq a) => [[a]] -> [(a,Int)]
-howManySetsContain xss = error "You've not tried to write howManySetsContain yet"
+howManySetsContain [] = error "empty list"
+howManySetsContain xss = howManySetsContainHelper xss
 
 nextListContainCount :: (Eq a) => a -> [a] -> Int
 nextListContainCount _ [] = 0
@@ -108,8 +107,9 @@ iterateOverSubListsHelperDeDupe count (x:xs) fullList
     | (iterateOverListItemExists (fst x) (init (take count (iterateOverSubListsHelperAppend (iterateOverSubListsHelper fullList ))))) == True = (iterateOverSubListsHelperDeDupe (count + 1) xs fullList)
     | otherwise = (x: (iterateOverSubListsHelperDeDupe (count + 1) xs fullList))
 
--- How to run this
--- iterateOverSubListsHelperDeDupe 1 (iterateOverSubListsHelperAppend (iterateOverSubListsHelper ["list 1","list 2"])) ["list 1", "list 2"]
+howManySetsContainHelper :: (Eq a) => [[a]] -> [(a,Int)]
+howManySetsContainHelper [] = error "empty list"
+howManySetsContainHelper (xss) = iterateOverSubListsHelperDeDupe 1 (iterateOverSubListsHelperAppend (iterateOverSubListsHelper xss)) xss
 
 -- TEST SET FOR Q1
 {-
