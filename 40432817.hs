@@ -129,16 +129,19 @@ THE ORDER OF ELEMENTS IN THE RESULTS OF THESE FUNCTIONS IS NOT IMPORTANT.
 
 
 -- QUESTION 2: Functions and relations
-
+-- Question 2) a)
 oneHop :: (Eq a) => a -> [(a,a)] -> [a]
 oneHop y xs = error "You've not tried to write oneHop yet"
 
+-- Question 2) b)
 nextSteps :: (Eq a) => [a] -> [(a,a)] -> [[a]]
 nextSteps ps xs = error "You've not tried to write nextSteps yet"
 
+-- Question 2) c)
 allPathsFrom :: (Eq a) => a -> [(a,a)] -> [[a]]
 allPathsFrom x ys = error "You've not tried to write allPathsFrom yet"
 
+-- Question 2) d)
 shortestCycle :: (Eq a) => a -> [(a,a)] -> Maybe [a]
 shortestCycle x ys = error "You've not tried to write shortestCycle yet"
 
